@@ -28,4 +28,6 @@ documentation/*.html
 
 # misc
 .env
+/server/init/walletconfig.js
+
 
