@@ -1,0 +1,8 @@
+{
+    "verbose": false,
+    "watch": [
+      "server",
+      "webpack"
+    ],
+    "exec": "node compiled/server.dev.js"
+}
