@@ -6,7 +6,6 @@ module.exports = {
         require('./routes/products'),
         require('./routes/dashboard'),
         require('./routes/forms'),
-        require('./routes/pages'),
       ]);
     });
   },

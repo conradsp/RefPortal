@@ -3,9 +3,7 @@ module.exports = {
   getChildRoutes(partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/components'),
-        require('./routes/sell'),
-        require('./routes/steppers'),
+        require('./routes/sell')
       ]);
     });
   }
