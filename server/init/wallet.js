@@ -14,6 +14,10 @@ const web3 = new Web3();
 let globalKeystore;
 let globalKey;
 
+keystore.prototype.passwordProvider = function (callback) {
+  callback(null, password);
+};
+
 export function init() {
 
   keystore.deriveKeyFromPassword(password, (err, pwDerivedKey) => {
