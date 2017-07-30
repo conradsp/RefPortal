@@ -51,13 +51,40 @@ function buyProductError(message) {
 export function buyProduct(product, userId) {
   return (dispatch) => {
     dispatch(beginBuyProduct());
-    console.log(product);
     return accountService().buyProduct({data: product, userId})
       .then((response) => {
         dispatch(buyProductSuccess(response.data));
       })
       .catch((err) => {
         dispatch(buyProductError(err));
+      });
+  };
+}
+
+function beginTransferMoney() {
+  return { type: types.TRANSFER_MONEY};
+}
+
+function transferMoneySuccess() {
+  return {
+    type: types.TRANSFER_MONEY_SUCCESS,
+    message: 'Transfer successful'
+  };
+}
+
+function transferMoneyError(message) {
+  return { type: types.TRANSFER_MONEY_ERROR, message };
+}
+
+export function transferMoney(phone, amount) {
+  return (dispatch) => {
+    dispatch(beginTransferMoney());
+    return accountService().transferMoney({phone, data: {amount} })
+      .then((response) => {
+        dispatch(transferMoneySuccess(response.data));
+      })
+      .catch((err) => {
+        dispatch(transferMoneyError(err));
       });
   };
 }

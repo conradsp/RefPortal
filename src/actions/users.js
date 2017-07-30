@@ -96,7 +96,7 @@ export function manualLogin(data) {
         dispatch(push('/'));
       })
       .catch((err) => {
-        dispatch(loginError('Oops! Invalid phone number or password'));
+        dispatch(loginError('Invalid phone number or password'));
       });
   };
 }

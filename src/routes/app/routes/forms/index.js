@@ -3,7 +3,8 @@ module.exports = {
   getChildRoutes(partialNextState, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./routes/sell')
+        require('./routes/sell'),
+        require('./routes/transfer')
       ]);
     });
   }

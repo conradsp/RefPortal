@@ -21,11 +21,8 @@ const UserSchema = new mongoose.Schema({
   age: String,
   location: String,
   blockchain_id: String,
-  arcproject: {
-    name: String,
-    type: String,
-    location: String
-  },
+  pin: String,
+  initiative: { },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   google: {}

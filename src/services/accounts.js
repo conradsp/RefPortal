@@ -17,6 +17,11 @@ export default () => {
       url: `/wallet/buy/${userId}`,
       data
     }),
+    transferMoney: ({phone, data}) => client.request({
+      method: 'PUT',
+      url: `/wallet/transfer/${phone}`,
+      data
+    })
   };
 };
 

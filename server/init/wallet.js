@@ -4,6 +4,7 @@ import { keystore, txutils } from 'eth-lightwallet';
 import Q from 'q';
 import { password, seed, ethereumEndpoint } from './walletconfig.js';
 import { controllers } from '../db';
+import { sendSMS } from './twilio';
 
 const usersController = controllers && controllers.users;
 
@@ -66,6 +67,7 @@ export function getAccounts(req, res) {
   }).then((users) => {
     accounts.forEach((account) => {
       account.name = users.find(x => x.blockchain_id === account.address).name;
+      account.phone = users.find(x => x.blockchain_id === account.address).phone;
     });
     return res.json(accounts);
   });
@@ -94,7 +96,7 @@ export function getTransactions(req, res) {
   return res.json(transactions);
 }
 
-function sendEth(fromAddr, toAddr, valueEth) {
+export function sendEth(fromAddr, toAddr, valueEth) {
   const value = parseFloat(valueEth)*1.0e18;
   const gasPrice = 50000000000;
   const gas = 50000;
@@ -113,9 +115,25 @@ export function buyProduct(req, res) {
   return res.status(200).send('Updated successfully');
 }
 
+export function transferMoney(req, res) {
+  const toPhone = req.params.id;
+  const amount = req.body.amount;
+
+  // The money will always come from the SMS Administrator account for now
+  //  Blockchain ID: 3cf7dc91837ee0732ff29a42dc084aba6d119aff
+  usersController.getUserFromPhone(toPhone).then((toUser) => {
+    // Get the blockchain id for the user
+    sendSMS({to: toPhone, body:'Administrator transferred $'+amount+' to your account'});
+    sendEth('3cf7dc91837ee0732ff29a42dc084aba6d119aff', toUser.blockchain_id, amount);
+    return res.status(200).send('Updated successfully');
+  });
+}
+
 export default {
   init,
   getAccounts,
   getTransactions,
-  buyProduct
+  sendEth,
+  buyProduct,
+  transferMoney
 };

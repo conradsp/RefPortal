@@ -6,3 +6,16 @@ Uses a mongo database to store all user and product information
 All financial transactions are executed against the Ethereum blockchain.
 Funds are transferred automatically and immediately.
 
+# Prerequisites
+
+MongoDB must be installed and running on your local host
+
+# Running the application
+
+To run, execute the following commands:
+
+yarn install
+yarn start
+
+
+

@@ -71,6 +71,12 @@ export default (app) => {
     sessionStore = dbSession();
   }
 
+  //  Populate the database
+  const seedDB = true;
+  if (seedDB) {
+    require('./seed');
+  }
+
   const sess = {
     resave: false,
     saveUninitialized: false,

@@ -95,6 +95,7 @@ class SidebarContent extends React.Component {
         <li><FlatButton href="#/app/dashboard"><i className="nav-icon material-icons">dashboard</i><span className="nav-text">Dashboard</span></FlatButton></li>
         <li><FlatButton href="#/app/products/products"><i className="nav-icon material-icons">shopping_cart</i><span className="nav-text">Buy</span></FlatButton></li>
         <li><FlatButton href="#/app/form/sell"><i className="nav-icon material-icons">account_balance</i><span className="nav-text">Sell</span></FlatButton></li>
+        <li><FlatButton href="#/app/form/transfer"><i className="nav-icon material-icons">euro_symbol</i><span className="nav-text">Transfer money</span></FlatButton></li>
       </ul>
     );
   }

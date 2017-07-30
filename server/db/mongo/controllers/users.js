@@ -27,6 +27,19 @@ export function getUserFromBlockchain(id) {
   return userPromise;
 }
 
+export function getUserFromPhone(phone) {
+  const userPromise = User.findOne({ phone }).exec();
+  userPromise.then((user, err) => {
+    if (err) {
+      console.log(err);
+      // userPromise.reject(err);
+    }
+    return user;
+  });
+
+  return userPromise;
+}
+
 /**
  * POST /login
  */
@@ -86,6 +99,7 @@ export function signUp(req, res, next) {
 export default {
   getUser,
   getUserFromBlockchain,
+  getUserFromPhone,
   login,
   logout,
   signUp

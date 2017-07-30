@@ -34,6 +34,8 @@ class Login extends React.Component {
   }
 
   render() {
+    const { message } = this.props.user;
+
     return (
       <div className="page-login">
         <div className="main-body">
@@ -65,6 +67,9 @@ class Login extends React.Component {
                             />
                         </div>
                       </fieldset>
+                      <p
+                        className="message"
+                      >{message}</p>
                     </form>
                   </div>
                   <div className="card-action no-border text-right">

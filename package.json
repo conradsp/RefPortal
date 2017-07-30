@@ -12,9 +12,9 @@
     "posttest": "npm run lint",
     "reinstall": "rimraf node_modules && npm install",
     "serve:dev": "webpack-dev-server --open --env dev",
-    "serve:server": "export NODE_ENV=development && webpack --colors --display-error-details --config ./server/webpack/webpack.config.js --env.server && nodemon",
+    "serve:server": "export NODE_ENV=development && webpack --colors --display-error-details --config ./server/webpack/webpack.config.js --env.server && node compiled/server.dev.js&",
     "serve:dist": "webpack-dev-server --open --env dist -p --progress",
-    "start": "npm run serve:dev && npm run serve:server"
+    "start": "npm run serve:server && npm run serve:dev"
   },
   "dependencies": {
     "axios": "^0.16.2",
@@ -59,6 +59,7 @@
     "redux-devtools-extension": "^2.13.2",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.2.0",
+    "twilio": "^3.5.0",
     "web3": "^0.20.1",
     "webpack-hot-middleware": "^2.18.2"
   },

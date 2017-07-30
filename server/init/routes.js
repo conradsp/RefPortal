@@ -2,7 +2,8 @@
  * Routes for express app
  */
 import passport from 'passport';
-import { getAccounts, getTransactions, buyProduct } from './wallet';
+import { getAccounts, getTransactions, buyProduct, transferMoney } from './wallet';
+import { sendSMS, receiveSMS } from './twilio';
 import unsupportedMessage from '../db/unsupportedMessage';
 import { controllers, passport as passportConfig } from '../db';
 
@@ -70,5 +71,9 @@ export default (app) => {
   // wallet methods
   app.get('/wallet/accounts', isLoggedIn, getAccounts);
   app.put('/wallet/buy/:id', isLoggedIn, buyProduct);
+  app.put('/wallet/transfer/:id', isLoggedIn, transferMoney);
   app.get('/wallet/:id', isLoggedIn, getTransactions);
+
+  app.post('/sms/receive', receiveSMS);
+  app.post('/sms/send', sendSMS);
 };
