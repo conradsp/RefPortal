@@ -67,7 +67,7 @@ Product.find({}).remove()
       ]
     }, {
       seller: 'Portal Admin',
-      seller_id: 'e16ae3d122b5b4262e153c56f55d5c5e0dcc993c',
+      seller_id: 'edc12cb1f583e212243b7b9794ba00776d3ce295',
       name: 'Bananas',
       desc: 'I have large lots of bananas. Sold by the kg',
       category: 'Food',

@@ -114,9 +114,12 @@ export function buyProduct(req, res) {
   const buyerId = req.params.id;
   const prod = req.body;
 
+  if (buyerId === prod.seller_id) {
+    return res.status(200).send('BUYERSELLERSAME');
+  }
   sendEth(buyerId, prod.seller_id, prod.price);
 
-  return res.status(200).send('Updated successfully');
+  return res.status(200).send('SUCCESS');
 }
 
 export function transferMoney(req, res) {
@@ -128,7 +131,7 @@ export function transferMoney(req, res) {
   usersController.getUserFromPhone(toPhone).then((toUser) => {
     // Get the blockchain id for the user
     sendSMS({to: toPhone, body:'Administrator transferred $'+amount+' to your account'});
-    sendEth('3cf7dc91837ee0732ff29a42dc084aba6d119aff', toUser.blockchain_id, amount);
+    sendEth('4999e240151dd7a234e2591a84383c3503692639', toUser.blockchain_id, amount);
     return res.status(200).send('Updated successfully');
   });
 }

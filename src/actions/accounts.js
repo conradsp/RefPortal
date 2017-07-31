@@ -53,7 +53,12 @@ export function buyProduct(product, userId) {
     dispatch(beginBuyProduct());
     return accountService().buyProduct({data: product, userId})
       .then((response) => {
-        dispatch(buyProductSuccess(response.data));
+        console.log(response.data);
+        if (response.data === 'BUYERSELLERSAME') {
+          dispatch(buyProductError('Cannot purchase a product that you are selling.'));
+        } else {
+          dispatch(buyProductSuccess(response.data));
+        }
       })
       .catch((err) => {
         dispatch(buyProductError(err));
